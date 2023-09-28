@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
   <header>
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -11,15 +8,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">About</a>
+            <router-link to="/about" class="nav-link">About</router-link>
+            <router-link to="/profile/user" class="nav-link">User Profile</router-link>
+            <router-link to="/profile/company" class="nav-link">Company Profile</router-link>
+            <router-link to="/signup" class="nav-link">Sign up</router-link>
+            <router-link to="/login" class="nav-link">Log in</router-link>
+            <router-link to="/users" class="nav-link">Users</router-link>
+            <router-link to="/companies" class="nav-link">Companies</router-link>
           </div>
         </div>
       </div>
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  name: "Header",
+};
+</script>
 
 <style scoped>
 </style>
