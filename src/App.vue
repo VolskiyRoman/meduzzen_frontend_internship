@@ -1,7 +1,5 @@
-<script setup>
-import Hello from './views/Hello.vue'
-</script>
-
 <template>
-  <Hello/>
+  <div id="app" class="d-flex flex-column min-vh-100">
+    <router-view></router-view>
+  </div>
 </template>
