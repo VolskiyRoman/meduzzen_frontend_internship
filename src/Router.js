@@ -1,53 +1,44 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from './views/Home.vue';
-import About from './views/About.vue';
-import UserProfile from "@/views/UserProfile.vue";
-import CompanyProfile from "@/views/CompanyProfile.vue";
-import SignUp from "@/views/SignUp.vue";
-import LogIn from "@/views/LogIn.vue";
-import UserList from "@/views/UserList.vue";
-import CompanyList from "@/views/CompanyList.vue";
-
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('@/views/Home.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    component: About,
+    component: () => import('@/views/About.vue'),
   },
   {
     path: '/profile/user',
     name: 'UserProfile',
-    component: UserProfile,
+    component: () => import("@/views/UserProfile.vue"),
   },
   {
     path: '/profile/company',
     name: 'CompanyProfile',
-    component: CompanyProfile,
+    component: () => import("@/views/CompanyProfile.vue"),
   },
   {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp,
+    component: () => import("@/views/SignUp.vue"),
   },
   {
     path: '/login',
     name: 'LogIn',
-    component: LogIn,
+    component: () => import("@/views/LogIn.vue"),
   },
   {
     path: '/users',
     name: 'UserList',
-    component: UserList,
+    component: () => import("@/views/UserList.vue"),
   },
   {
     path: '/companies',
     name: 'CompanyList',
-    component: CompanyList,
+    component: () => import("@/views/CompanyList.vue"),
   },
 
 ];

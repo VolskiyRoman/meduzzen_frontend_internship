@@ -8,13 +8,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link to="/about" class="nav-link">About</router-link>
-            <router-link to="/profile/user" class="nav-link">User Profile</router-link>
-            <router-link to="/profile/company" class="nav-link">Company Profile</router-link>
-            <router-link to="/signup" class="nav-link">Sign up</router-link>
-            <router-link to="/login" class="nav-link">Log in</router-link>
-            <router-link to="/users" class="nav-link">Users</router-link>
-            <router-link to="/companies" class="nav-link">Companies</router-link>
+            <router-link :to="{name:'About'}" class="nav-link">About</router-link>
+            <router-link :to="{name:'UserProfile'}" class="nav-link">User Profile</router-link>
+            <router-link :to="{name:'CompanyProfile'}" class="nav-link">Company Profile</router-link>
+            <router-link :to="{name:'SignUp'}" class="nav-link">Sign up</router-link>
+            <router-link :to="{name:'LogIn'}" class="nav-link">Log in</router-link>
+            <router-link :to="{name:'UserList'}" class="nav-link">Users</router-link>
+            <router-link :to="{name:'CompanyList'}" class="nav-link">Companies</router-link>
           </div>
         </div>
       </div>
@@ -23,8 +23,15 @@
 </template>
 
 <script>
+import About from "@/views/About.vue";
+
 export default {
   name: "Header",
+  computed: {
+    About() {
+      return About
+    }
+  },
 };
 </script>
 
