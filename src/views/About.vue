@@ -6,8 +6,8 @@ import Footer from "@/components/Footer.vue";
 <template>
   <Header/>
   <div>
-    <h1>About Page</h1>
-    <p>This is the About page content.</p>
+    <h1>{{ $t("components.aboutPage") }}</h1>
+    <p>{{ $t("components.aboutPageContent") }}</p>
   </div>
   <Footer/>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <Header/>
   <div>
-    <h1>List of Companies Page</h1>
+    <h1>{{ $t('components.listOfCompaniesPage') }}</h1>
   </div>
   <Footer/>
 </template>
