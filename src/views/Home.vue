@@ -12,7 +12,7 @@ export default {
 <template>
   <Header/>
   <div>
-    <h1>Home</h1>
+    <h1>{{ $t('components.home') }}</h1>
   </div>
   <Footer/>
 </template>

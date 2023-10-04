@@ -12,7 +12,7 @@ export default {
 <template>
   <Header/>
   <div>
-    <h1>User Authorization Page</h1>
+    <h1>{{ $t('components.userAuthorizationPage') }}</h1>
   </div>
   <Footer/>
 </template>

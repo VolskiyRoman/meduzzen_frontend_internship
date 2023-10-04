@@ -1,7 +1,7 @@
 <template>
   <Header/>
   <div>
-    <h1>User Profile Page</h1>
+    <h1>{{ $t('components.userProfilePage') }}</h1>
   </div>
   <Footer/>
 </template>
