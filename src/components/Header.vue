@@ -8,13 +8,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link :to="{name:'About'}" class="nav-link">{{ $t('navbar.about') }}</router-link>
-            <router-link :to="{name:'UserProfile'}" class="nav-link">{{ $t('navbar.userProfile') }}</router-link>
-            <router-link :to="{name:'CompanyProfile'}" class="nav-link">{{ $t('navbar.companyProfile') }}</router-link>
-            <router-link :to="{name:'SignUp'}" class="nav-link">{{ $t('navbar.signUp') }}</router-link>
-            <router-link :to="{name:'LogIn'}" class="nav-link">{{ $t('navbar.logIn') }}</router-link>
-            <router-link :to="{name:'UserList'}" class="nav-link">{{ $t('navbar.users') }}</router-link>
-            <router-link :to="{name:'CompanyList'}" class="nav-link">{{ $t('navbar.companies') }}</router-link>
+            <router-link v-for="link in navLinks" :key="link.name" :to="{ name: link.routeName }" class="nav-link">{{ $t(link.translationKey) }}</router-link>
             <a class="nav-link" @click="changeLang('en')"><flag iso="us"></flag></a>
             <a class="nav-link" @click="changeLang('ua')"><flag iso="ua"></flag></a>
           </div>
@@ -25,15 +19,22 @@
 </template>
 
 <script>
-import About from "@/views/About.vue";
-import { setLanguage } from "@/i18n/index"
+import { setLanguage } from "@/i18n/index";
 
 export default {
   name: "Header",
-  computed: {
-    About() {
-      return About
-    }
+  data() {
+    return {
+      navLinks: [
+        { name: "About", routeName: "About", translationKey: "navbar.about" },
+        { name: "UserProfile", routeName: "UserProfile", translationKey: "navbar.userProfile" },
+        { name: "CompanyProfile", routeName: "CompanyProfile", translationKey: "navbar.companyProfile" },
+        { name: "SignUp", routeName: "SignUp", translationKey: "navbar.signUp" },
+        { name: "LogIn", routeName: "LogIn", translationKey: "navbar.logIn" },
+        { name: "UserList", routeName: "UserList", translationKey: "navbar.users" },
+        { name: "CompanyList", routeName: "CompanyList", translationKey: "navbar.companies" }
+      ]
+    };
   },
   methods: {
     changeLang(locale) {
@@ -42,6 +43,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>
