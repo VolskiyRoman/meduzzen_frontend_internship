@@ -40,6 +40,11 @@ const routes = [
     name: 'CompanyList',
     component: () => import("@/views/CompanyList.vue"),
   },
+  {
+    path: '/vuextest',
+    name: 'VuexTest',
+    component: () => import("@/components/testVuex.vue"),
+  },
 
 ];
 

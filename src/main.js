@@ -7,6 +7,7 @@ import { languages } from "@/i18n";
 import { defaultLocale } from "@/i18n";
 import {createI18n} from "vue-i18n";
 import FlagIcon from 'vue-flag-icon'
+import store from './store/store';
 
 const app = createApp(App);
 app.use(router);
@@ -20,4 +21,5 @@ export const i18n = createI18n({
 })
 app.use(FlagIcon)
 app.use(i18n)
+app.use(store);
 app.mount('#app');
