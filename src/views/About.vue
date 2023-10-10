@@ -1,13 +1,13 @@
 <script setup>
 import {ref} from "vue";
-import instance from "../../api/api";
+import axiosInstance from "../../api/api";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 const apiResponse = ref(null);
 
-instance.get('')
+axiosInstance.get('')
     .then(response => {
-      apiResponse.value = JSON.stringify(response.data);
+      apiResponse.value = response.data;
     })
     .catch(error => {
       console.error('API Error:', error);
