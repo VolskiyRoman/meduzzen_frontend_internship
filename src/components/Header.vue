@@ -8,7 +8,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link v-for="link in navLinks" :key="link.name" :to="{ name: link.routeName }" class="nav-link">{{ $t(link.translationKey) }}</router-link>
+            <router-link v-if="loggedIn" v-for="link in AuthorizedNavLinks" :key="link.name" :to="{ name: link.routeName }" class="nav-link">{{ $t(link.translationKey) }}</router-link>
+            <router-link v-if="!loggedIn" v-for="link in UnauthorizedNavLinks" :key="link.name" :to="{ name: link.routeName }" class="nav-link">{{ $t(link.translationKey) }}</router-link>
+            <button type="button" class="btn btn-light" @click="logoutUser" v-if="loggedIn">{{ $t('navbar.logout') }}</button>
             <a class="nav-link" @click="changeLang('en')"><flag iso="us"></flag></a>
             <a class="nav-link" @click="changeLang('ua')"><flag iso="ua"></flag></a>
           </div>
@@ -20,26 +22,40 @@
 
 <script>
 import { setLanguage } from "@/i18n/index";
+import { mapState } from "vuex";
+import authModule from "@/store/modules/authModule";
 
 export default {
   name: "Header",
   data() {
     return {
-      navLinks: [
+      AuthorizedNavLinks: [
         { name: "About", routeName: "About", translationKey: "navbar.about" },
         { name: "UserProfile", routeName: "UserProfile", translationKey: "navbar.userProfile" },
         { name: "CompanyProfile", routeName: "CompanyProfile", translationKey: "navbar.companyProfile" },
-        { name: "SignUp", routeName: "SignUp", translationKey: "navbar.signUp" },
-        { name: "LogIn", routeName: "LogIn", translationKey: "navbar.logIn" },
         { name: "UserList", routeName: "UserList", translationKey: "navbar.users" },
         { name: "CompanyList", routeName: "CompanyList", translationKey: "navbar.companies" }
+      ],
+      UnauthorizedNavLinks: [
+        { name: "About", routeName: "About", translationKey: "navbar.about" },
+        { name: "SignUp", routeName: "SignUp", translationKey: "navbar.signUp" },
+        { name: "LogIn", routeName: "LogIn", translationKey: "navbar.logIn" },
       ]
     };
   },
   methods: {
     changeLang(locale) {
       setLanguage(locale);
+    },
+    logoutUser() {
+      this.$router.push("/about");
+      this.$store.dispatch('authModule/logout');
     }
-  }
+  },
+  computed: {
+    ...mapState({
+      loggedIn: (state) => state.authModule.status.loggedIn,
+    }),
+  },
 };
 </script>
