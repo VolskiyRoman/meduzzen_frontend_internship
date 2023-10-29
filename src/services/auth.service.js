@@ -1,31 +1,25 @@
 import axios from 'axios';
 import axiosInstance from "../../api/api";
 
-const REGISTER_URL = 'http://localhost:8000/auth/users/';
-const LOGIN_URL = 'http://localhost:8000/auth/jwt/create/'
-const CURRENT_USER_URL = 'http://localhost:8000/auth/users/me'
+const REGISTER_URL = '/auth/users/'
+const LOGIN_URL = '/auth/jwt/create/'
+const CURRENT_USER_URL = '/auth/users/me/'
 
 class AuthService {
     login({email, password}) {
         return axiosInstance
             .post(LOGIN_URL, {
-                email: email,
-                password: password
+                email, password
             })
             .then(loginResponse => {
                 if (loginResponse.data.access) {
-                    localStorage.setItem('user', JSON.stringify(loginResponse.data));
-                    const userTokens = {
-                        access: loginResponse.data.access,
-                        refresh: loginResponse.data.refresh
-                    };
+                    localStorage.setItem('tokens', JSON.stringify(loginResponse.data));
 
                     return axiosInstance
                         .get(CURRENT_USER_URL)
                         .then(userInfoResponse => {
-                            const userData = {...userTokens, ...userInfoResponse.data}
-                            localStorage.setItem('user', JSON.stringify(userData));
-                            return userData;
+                            localStorage.setItem('user', JSON.stringify(userInfoResponse.data));
+                            return userInfoResponse;
                         })
                         .catch(error => {
                             console.error('Unable to retrieve user information.:', error);
@@ -36,13 +30,11 @@ class AuthService {
 
     logout() {
         localStorage.removeItem('user');
+        localStorage.removeItem('tokens');
     }
 
-    register(user) {
-        return axios.post(REGISTER_URL, {
-            email: user.email,
-            password: user.password
-        });
+    register({ email, password }) {
+        return axios.post(REGISTER_URL, email, password);
     }
 }
 

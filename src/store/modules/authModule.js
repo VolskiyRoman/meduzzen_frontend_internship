@@ -26,16 +26,15 @@ const authModule = {
             commit('logout');
         },
         register({ commit }, user) {
-            return AuthService.register(user).then(
-                response => {
+            return AuthService.register(user)
+                .then(response => {
                     commit('registerSuccess');
                     return Promise.resolve(response.data);
-                },
-                error => {
+                })
+                .catch(error => {
                     commit('registerFailure');
                     return Promise.reject(error);
-                }
-            );
+                });
         }
     },
     mutations: {
