@@ -1,5 +1,5 @@
 import axios from 'axios';
-import axiosInstance from "../../api/api";
+import axiosInstance from "../api/api";
 
 const REGISTER_URL = '/auth/users/'
 const LOGIN_URL = '/auth/jwt/create/'

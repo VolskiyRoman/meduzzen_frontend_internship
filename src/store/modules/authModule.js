@@ -35,6 +35,9 @@ const authModule = {
                     commit('registerFailure');
                     return Promise.reject(error);
                 });
+        },
+        refreshToken({ commit }, accessToken) {
+            commit('refreshToken', accessToken);
         }
     },
     mutations: {
@@ -55,6 +58,10 @@ const authModule = {
         },
         registerFailure(state) {
             state.status.loggedIn = false;
+        },
+        refreshToken(state, accessToken) {
+            state.status.loggedIn = true;
+            state.user = { ...state.user, accessToken: accessToken };
         }
     }
 };

@@ -3,9 +3,11 @@ import authModule from './modules/authModule'
 import testModule from './modules/testModule';
 
 
-export default createStore({
+const store = createStore({
     modules: {
         testModule,
         authModule,
     },
 });
+
+export default store

@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import axiosInstance from "../../api/api";
+import axiosInstance from "../api/api";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 const apiResponse = ref(null);
