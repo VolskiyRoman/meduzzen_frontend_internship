@@ -16,7 +16,6 @@ axiosInstance.get('')
 
 <template>
   <Header/>
-  <div>{{ apiResponse }}</div>
   <div>
     <h1>{{ $t("components.aboutPage") }}</h1>
     <p>{{ $t("components.aboutPageContent") }}</p>
