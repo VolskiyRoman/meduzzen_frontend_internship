@@ -19,7 +19,7 @@ class AuthService {
                         .get(CURRENT_USER_URL)
                         .then(userInfoResponse => {
                             localStorage.setItem('user', JSON.stringify(userInfoResponse.data));
-                            return userInfoResponse;
+                            return userInfoResponse.data;
                         })
                         .catch(error => {
                             console.error('Unable to retrieve user information.:', error);
