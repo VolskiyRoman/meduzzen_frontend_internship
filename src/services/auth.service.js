@@ -1,5 +1,5 @@
 import axios from 'axios';
-import axiosInstance from "../../api/api";
+import axiosInstance from "../api/api";
 
 const REGISTER_URL = '/auth/users/'
 const LOGIN_URL = '/auth/jwt/create/'
@@ -19,7 +19,7 @@ class AuthService {
                         .get(CURRENT_USER_URL)
                         .then(userInfoResponse => {
                             localStorage.setItem('user', JSON.stringify(userInfoResponse.data));
-                            return userInfoResponse;
+                            return userInfoResponse.data;
                         })
                         .catch(error => {
                             console.error('Unable to retrieve user information.:', error);

@@ -7,7 +7,19 @@ import { languages } from "@/i18n";
 import { defaultLocale } from "@/i18n";
 import {createI18n} from "vue-i18n";
 import FlagIcon from 'vue-flag-icon'
-import store from './store/store';
+
+import { createStore } from 'vuex';
+import authModule from "@/store/modules/authModule";
+import testModule from "@/store/modules/testModule";
+
+
+const store = createStore({
+    modules: {
+        testModule,
+        authModule,
+    },
+});
+export default store
 
 const app = createApp(App);
 app.use(router);
