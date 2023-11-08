@@ -1,8 +1,6 @@
 <script setup>
 import {ref} from "vue";
 import axiosInstance from "../api/api";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 const apiResponse = ref(null);
 
 axiosInstance.get('')
@@ -15,10 +13,8 @@ axiosInstance.get('')
 </script>
 
 <template>
-  <Header/>
   <div>
     <h1>{{ $t("components.aboutPage") }}</h1>
     <p>{{ $t("components.aboutPageContent") }}</p>
   </div>
-  <Footer/>
 </template>

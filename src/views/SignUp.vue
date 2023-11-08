@@ -1,14 +1,10 @@
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
 export default {
   name: "UserRegistration",
   components: {
-    Footer,
-    Header,
     Form,
     Field,
     ErrorMessage,
@@ -73,7 +69,6 @@ export default {
 </script>
 
 <template>
-  <Header/>
   <div class="col-md-12">
     <div class="card card-container">
       <Form @submit="handleRegister" :validation-schema="schema">
@@ -110,5 +105,4 @@ export default {
       </div>
     </div>
   </div>
-  <Footer/>
 </template>
