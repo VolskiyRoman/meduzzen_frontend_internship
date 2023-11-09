@@ -11,17 +11,17 @@
       <Form @submit="updateUserInfo" :validation-schema="schema" v-if="editingUserInfo">
         <div class="form-group">
           <label for="first_name">First Name</label>
-          <Field name="first_name" type="text" class="form-control" v-model="editedFirstName" />
+          <Field name="first_name" type="text" class="form-control" />
           <ErrorMessage name="first_name" class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="last_name">Last Name</label>
-          <Field name="last_name" type="text" class="form-control" v-model="editedLastName" />
+          <Field name="last_name" type="text" class="form-control" />
           <ErrorMessage name="last_name" class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="bio">Bio</label>
-          <Field name="bio" type="text" class="form-control" v-model="editedBio" />
+          <Field name="bio" type="text" class="form-control" />
           <ErrorMessage name="bio" class="error-feedback" />
         </div>
         <button type="submit">Update User info</button>
@@ -89,10 +89,6 @@ const store = useStore();
 const currentUser = computed(() => store.state.authModule.user);
 const editingUserInfo = ref(false)
 
-const editedFirstName = ref('');
-const editedLastName = ref('');
-const editedBio = ref('');
-
 const fileInput = ref(null);
 
 onMounted(() => {
@@ -105,15 +101,9 @@ const showEditForm = () => {
   editingUserInfo.value = !editingUserInfo.value
 }
 
-const updateUserInfo = async () => {
+const updateUserInfo = async (updatedData) => {
   try {
     const userId = currentUser.value.id;
-
-    const updatedData = {
-      first_name: String(editedFirstName.value),
-      last_name: String(editedLastName.value),
-      bio: String(editedBio.value),
-    };
 
     await axiosInstance.patch(`auth/users/${userId}/`, updatedData);
     await store.dispatch('authModule/updateUserInfo');
