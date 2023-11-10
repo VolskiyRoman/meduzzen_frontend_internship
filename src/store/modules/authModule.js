@@ -1,4 +1,5 @@
 import AuthService from "@/services/auth.service";
+import axiosInstance from "@/api/api";
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
@@ -38,6 +39,15 @@ const authModule = {
         },
         refreshToken({ commit }, accessToken) {
             commit('refreshToken', accessToken);
+        },
+        async updateUserInfo({ commit }){
+            try {
+                const { data } = await axiosInstance.get(`auth/users/me/`);
+                commit('updateUser', data)
+                localStorage.setItem('user', JSON.stringify(data))
+            } catch (error) {
+                console.error("Error updating user's info:", error);
+            }
         }
     },
     mutations: {
@@ -61,7 +71,10 @@ const authModule = {
         },
         refreshToken(state, accessToken) {
             state.status.loggedIn = true;
-            state.user = { ...state.user, accessToken: accessToken };
+            state.user = { ...state.user, accessToken};
+        },
+        updateUser(state, userInfo) {
+            state.user = { ...state.user, ...userInfo }
         }
     }
 };

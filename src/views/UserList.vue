@@ -1,17 +1,24 @@
 <template>
-  <Header/>
   <div>
     <h1>{{ $t('components.listOfUsersPage') }}</h1>
+    <ul>
+      <li v-for="user in users" :key="user.id">
+        <router-link :to="'/users/' + user.id">
+          {{ user.email }}
+        </router-link>
+      </li>
+    </ul>
   </div>
-  <Footer/>
 </template>
 
-<script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+<script setup>
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 
-export default {
-  name: "ListOfUsers",
-  components: {Footer, Header},
-};
+const store = useStore();
+const users = computed(() => store.state.userModule.users);
+
+onMounted(() => {
+  store.dispatch('userModule/fetchAndSetUsers');
+});
 </script>

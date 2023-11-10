@@ -2,7 +2,7 @@
   "footerMsg": "2023 Твій Vue.js Застосунок",
   "navbar": {
     "about": "Про нас",
-    "userProfile": "Профіль користувача",
+    "myProfile": "Мій Профіль",
     "companyProfile": "Профіль компанії",
     "signUp": "Зареєструватися",
     "logIn": "Увійти",

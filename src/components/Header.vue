@@ -30,9 +30,8 @@
 </template>
 
 <script>
-import { setLanguage } from "@/i18n/index";
+import { setLanguage } from "@/i18n";
 import { mapState } from "vuex";
-import authModule from "@/store/modules/authModule";
 import {loggedInLinks, loggedOutLinks} from "@/static/navLinksData";
 
 export default {

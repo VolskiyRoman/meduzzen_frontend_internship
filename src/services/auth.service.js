@@ -1,4 +1,3 @@
-import axios from 'axios';
 import axiosInstance from "../api/api";
 
 const REGISTER_URL = '/auth/users/'
@@ -34,7 +33,7 @@ class AuthService {
     }
 
     register({ email, password }) {
-        return axios.post(REGISTER_URL, email, password);
+        return axiosInstance.post(REGISTER_URL, {email, password});
     }
 }
 

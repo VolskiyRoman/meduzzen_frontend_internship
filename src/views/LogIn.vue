@@ -1,14 +1,10 @@
 <script>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
 export default {
   name: "Login",
   components: {
-    Header,
-    Footer,
     Form,
     Field,
     ErrorMessage,
@@ -31,7 +27,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/profile/user");
+      this.$router.push("/profile");
     }
   },
   methods: {
@@ -40,7 +36,7 @@ export default {
 
       this.$store.dispatch("authModule/login", user).then(
           () => {
-            this.$router.push("/profile/user");
+            this.$router.push("/profile");
           },
           (error) => {
             this.loading = false;
@@ -59,7 +55,6 @@ export default {
 
 
 <template>
-  <Header/>
   <div>
     <div class="col-md-12">
       <div class="card card-container">
@@ -94,6 +89,5 @@ export default {
       </div>
     </div>
   </div>
-  <Footer/>
 </template>
 

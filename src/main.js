@@ -11,12 +11,13 @@ import FlagIcon from 'vue-flag-icon'
 import { createStore } from 'vuex';
 import authModule from "@/store/modules/authModule";
 import testModule from "@/store/modules/testModule";
-
+import userModule from "@/store/modules/userModule";
 
 const store = createStore({
     modules: {
         testModule,
         authModule,
+        userModule
     },
 });
 export default store

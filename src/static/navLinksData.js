@@ -1,6 +1,6 @@
 export const loggedInLinks = [
     { name: "About", routeName: "About", translationKey: "navbar.about" },
-    { name: "UserProfile", routeName: "UserProfile", translationKey: "navbar.userProfile" },
+    { name: "MyProfile", routeName: "MyProfile", translationKey: "navbar.myProfile" },
     { name: "CompanyProfile", routeName: "CompanyProfile", translationKey: "navbar.companyProfile" },
     { name: "UserList", routeName: "UserList", translationKey: "navbar.users" },
     { name: "CompanyList", routeName: "CompanyList", translationKey: "navbar.companies" }
