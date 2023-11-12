@@ -31,9 +31,9 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: '/profile/company',
-    name: 'CompanyProfile',
-    component: () => import("@/views/CompanyProfile.vue"),
+    path: '/my-companies',
+    name: 'MyCompanies',
+    component: () => import("@/views/CompanyList.vue"),
     meta: { requiresAuth: true },
   },
   {
@@ -53,6 +53,12 @@ const routes = [
     name: 'CompanyList',
     component: () => import("@/views/CompanyList.vue"),
     meta: { requiresAuth: true },
+  },
+  {
+    path: '/company/:id',
+    name: 'companyProfile',
+    component: () => import("@/views/CompanyProfile.vue"),
+    meta: { requiresAuth: true }
   },
   {
     path: '/vuextest',

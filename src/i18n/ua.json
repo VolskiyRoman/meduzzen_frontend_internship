@@ -3,7 +3,7 @@
   "navbar": {
     "about": "Про нас",
     "myProfile": "Мій Профіль",
-    "companyProfile": "Профіль компанії",
+    "myCompanies": "Мої компанії",
     "signUp": "Зареєструватися",
     "logIn": "Увійти",
     "users": "Користувачі",
@@ -17,7 +17,7 @@
     "aboutPage": "Про нас",
     "aboutPageContent": "Це вміст сторінки Про нас.",
     "listOfCompaniesPage": "Список компаній",
-    "companyProfilePage": "Профіль компанії",
+    "MyCompanies": "Мої компанії",
     "home": "Головна",
     "userAuthorizationPage": "Сторінка авторизації користувача",
     "userRegistrationPage": "Сторінка реєстрації користувача",
