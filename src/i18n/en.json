@@ -3,7 +3,7 @@
   "navbar": {
     "about": "About",
     "myProfile": "My Profile",
-    "companyProfile": "Company Profile",
+    "myCompanies": "My companies",
     "signUp": "Sign up",
     "logIn": "Log in",
     "users": "Users",
@@ -17,7 +17,14 @@
     "aboutPage": "About Page",
     "aboutPageContent": "This is the About page content.",
     "listOfCompaniesPage": "List of Companies Page",
-    "companyProfilePage": "Company Profile Page",
+    "companyProfile": {
+      "owner": "Owner:",
+      "members": "Members:",
+      "updateButton": "Update this company",
+      "deleteButton": "Delete this company",
+      "deleteConfirm": "Are you sure you want to delete the company?"
+    },
+    "MyCompanies": "My companies",
     "home": "Home",
     "userAuthorizationPage": "User Authorization Page",
     "userRegistrationPage": "User Registration Page",
