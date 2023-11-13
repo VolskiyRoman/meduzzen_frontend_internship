@@ -56,7 +56,7 @@ const routes = [
   },
   {
     path: '/company/:id',
-    name: 'companyProfile',
+    name: 'CompanyProfile',
     component: () => import("@/views/CompanyProfile.vue"),
     meta: { requiresAuth: true }
   },

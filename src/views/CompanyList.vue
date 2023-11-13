@@ -5,7 +5,7 @@
     <ul v-else>
       <router-link v-for="company in displayedCompanies"
                    :key="company.id"
-                   :to="{ name: 'companyProfile', params: { id: company.id }}">
+                   :to="{ name: 'CompanyProfile', params: { id: company.id }}">
         <li>{{ company.name }}</li>
       </router-link>
     </ul>

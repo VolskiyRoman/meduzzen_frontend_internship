@@ -2,8 +2,8 @@
   <div>
     <h1>{{ company.name }}</h1>
     <p>{{ company.description }}</p>
-    <p>Owner: {{ ownerEmail }}</p>
-    <h2>Members:</h2>
+    <p>{{ $t('components.companyProfile.owner') }} {{ ownerEmail }}</p>
+    <h2>{{ $t('components.companyProfile.members') }}</h2>
     <ul>
       <li v-for="memberId in company.members" :key="memberId">{{ memberEmails[memberId] }}</li>
     </ul>
@@ -11,7 +11,7 @@
     <button type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Update this company</button>
+            data-bs-target="#exampleModal">{{ $t('components.companyProfile.updateButton') }}</button>
 
     <CompanyModal modalTitle="Update company" submitButtonText="Update" @companyUpdate="updateCompany"  />
 
@@ -20,7 +20,7 @@
             class="btn btn-danger"
             data-bs-toggle="modal"
             data-bs-target="#deleteConfirmationModal">
-      Delete Company
+      {{ $t('components.companyProfile.deleteButton') }}
     </button>
 
     <div class="modal fade" id="deleteConfirmationModal"
@@ -30,14 +30,14 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteConfirmationModalLabel">Are you sure you want to delete the company?</h1>
+            <h1 class="modal-title fs-5" id="deleteConfirmationModalLabel">{{ $t('components.companyProfile.deleteConfirm') }}</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger"
                     @click="deleteCompany"
                     v-if="isOwner"
-                    data-bs-dismiss="modal">Delete</button>
+                    data-bs-dismiss="modal">{{ $t('components.companyProfile.deleteButton') }}</button>
           </div>
         </div>
       </div>
@@ -121,19 +121,14 @@ const deleteCompany = async () => {
 };
 
 const updateCompany = async (newCompanyValue) => {
-  const postRequestData = {
-    name: newCompanyValue.name,
-    description: newCompanyValue.description,
-    is_hidden: newCompanyValue.is_hidden,
-  };
+  const { name, description, is_hidden } = newCompanyValue;
+  const postRequestData = { name, description, is_hidden };
 
-  axiosInstance.patch(`api/companies/${companyId}/`, postRequestData)
-      .then(
-          fetchCompany()
-      )
-      .catch(error => {
-        console.error('Error creating company:', error);
-      });
-
+  try {
+    await axiosInstance.patch(`api/companies/${companyId}/`, postRequestData);
+    fetchCompany();
+  } catch (error) {
+    console.error('Error updating company:', error);
+  }
 }
 </script>
