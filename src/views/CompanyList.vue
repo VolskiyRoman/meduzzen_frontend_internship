@@ -24,7 +24,7 @@
 import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
-import CompanyModal from "@/components/CompanyModal.vue";
+import CompanyModal from "@/components/modals/CompanyModal.vue";
 import axiosInstance from "@/api/api";
 
 const companies = ref([]);

@@ -6,6 +6,7 @@
         <router-link :to="'/users/' + user.id">
           {{ user.email }}
         </router-link>
+        <InviteModal/>
       </li>
     </ul>
   </div>
@@ -14,11 +15,15 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
+import InviteModal from "@/components/modals/InviteModal.vue";
+
 
 const store = useStore();
 const users = computed(() => store.state.userModule.users);
+const user_companies = computed(() => store.state.authModule.companyIds)
 
 onMounted(() => {
   store.dispatch('userModule/fetchAndSetUsers');
+  store.dispatch('authModule/userCompanies')
 });
 </script>

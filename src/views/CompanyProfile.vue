@@ -51,7 +51,7 @@ import { ref, onMounted, computed } from 'vue';
 import axiosInstance from '@/api/api';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import CompanyModal from "@/components/CompanyModal.vue";
+import CompanyModal from "@/components/modals/CompanyModal.vue";
 
 const company = ref({});
 const ownerEmail = ref('');

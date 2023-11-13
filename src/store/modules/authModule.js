@@ -48,7 +48,16 @@ const authModule = {
             } catch (error) {
                 console.error("Error updating user's info:", error);
             }
-        }
+        },
+        async userCompanies({ commit, state }) {
+            try {
+                const response = await axiosInstance.get('/api/companies/my-companies');
+                const companyIds = response.data.map(company => company.id);
+                commit('saveUserCompanies', companyIds);
+            } catch (error) {
+                console.error("Error fetching user's companies:", error);
+            }
+        },
     },
     mutations: {
         loginSuccess(state, user) {
@@ -75,7 +84,10 @@ const authModule = {
         },
         updateUser(state, userInfo) {
             state.user = { ...state.user, ...userInfo }
-        }
+        },
+        saveUserCompanies(state, companyIds) {
+            state.user.companyIds = companyIds;
+        },
     }
 };
 export default authModule
