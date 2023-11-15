@@ -3,29 +3,29 @@
     <div v-if="currentUser">
       <img :src="currentUser.avatar" alt="User Avatar" v-if="currentUser.avatar" />
       <p v-for="(value, key) in currentUser" :key="key">
-        <template v-if="key !== 'avatar'">
-          <strong >{{ key }}:</strong> {{ value }}
+        <template v-if="key !== 'avatar' && key !== 'companies'">
+          <strong>{{ key }}:</strong> {{ value }}
         </template>
       </p>
-      <button @click="showEditForm" v-if="!editingUserInfo">Edit user profile</button>
+      <button @click="showEditForm" v-if="!editingUserInfo">{{ $t("myProfile.editUserProfile") }}</button>
       <Form @submit="updateUserInfo" :validation-schema="schema" v-if="editingUserInfo">
         <div class="form-group">
-          <label for="first_name">First Name</label>
+          <label for="first_name">{{ $t("myProfile.firstName") }}</label>
           <Field name="first_name" type="text" class="form-control" />
           <ErrorMessage name="first_name" class="error-feedback" />
         </div>
         <div class="form-group">
-          <label for="last_name">Last Name</label>
+          <label for="last_name">{{ $t("myProfile.lastName") }}</label>
           <Field name="last_name" type="text" class="form-control" />
           <ErrorMessage name="last_name" class="error-feedback" />
         </div>
         <div class="form-group">
-          <label for="bio">Bio</label>
+          <label for="bio">{{ $t("myProfile.bio") }}</label>
           <Field name="bio" type="text" class="form-control" />
           <ErrorMessage name="bio" class="error-feedback" />
         </div>
-        <button type="submit">Update User info</button>
-        <button @click="showEditForm">Cancel</button>
+        <button type="submit">{{ $t("myProfile.userInfo") }}</button>
+        <button @click="showEditForm">{{ $t("myProfile.cancel") }}</button>
       </Form>
     </div>
     <div v-else>
@@ -33,39 +33,40 @@
     </div>
     <div>
       <input type="file" ref="fileInput" accept="image/*" />
-      <button @click="updateAvatar">Update Avatar</button>
+      <button @click="updateAvatar">{{ $t("myProfile.updateAvatar") }}</button>
     </div>
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Delete Profile
+      {{ $t("myProfile.deleteProfile") }}
     </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Profile</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $t("myProfile.deleteProfile") }}</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            Are you sure you want to delete your profile?
+            {{ $t("myProfile.deleteConfirmation") }}
           </div>
           <div class="modal-footer">
             <button type="button"
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
-            >Close</button>
+            >{{ $t("myProfile.cancel") }}</button>
             <button type="button"
                     class="btn btn-primary"
                     @click="deleteProfile"
                     data-bs-dismiss="modal"
-            >Delete profile</button>
+            >{{ $t("myProfile.deleteProfile") }}</button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+  <my-invite-list></my-invite-list>
+  <my-request-list></my-request-list>
 </template>
 
 
@@ -76,6 +77,8 @@ import { useRouter } from "vue-router";
 import axiosInstance from "@/api/api";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import MyInviteList from "@/components/MyInviteList.vue";
+import MyRequestList from "@/components/MyRequestList.vue";
 
 const schema = yup.object().shape({
   first_name: yup.string().required("First name is required!"),

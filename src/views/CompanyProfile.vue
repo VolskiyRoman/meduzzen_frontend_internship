@@ -2,8 +2,8 @@
   <div>
     <h1>{{ company.name }}</h1>
     <p>{{ company.description }}</p>
-    <p>Owner: {{ ownerEmail }}</p>
-    <h2>Members:</h2>
+    <p>{{ $t("companyProfile.owner") }} {{ ownerEmail }}</p>
+    <h2>{{ $t("companyProfile.members") }}</h2>
     <ul>
       <li v-for="memberId in company.members" :key="memberId">{{ memberEmails[memberId] }}</li>
     </ul>
@@ -11,16 +11,18 @@
     <button type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Update this company</button>
+            data-bs-target="#exampleModal"
+            v-if="isOwner"
+            >{{ $t("companyProfile.update") }}</button>
 
-    <CompanyModal modalTitle="Update company" submitButtonText="Update" @companyUpdate="updateCompany"  />
+    <CompanyModal modalTitle="Update company" submitButtonText="Update" @companyUpdate="updateCompany" />
 
     <button v-if="isOwner"
             type="button"
             class="btn btn-danger"
             data-bs-toggle="modal"
             data-bs-target="#deleteConfirmationModal">
-      Delete Company
+      {{ $t("companyProfile.delete") }}
     </button>
 
     <div class="modal fade" id="deleteConfirmationModal"
@@ -30,19 +32,24 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteConfirmationModalLabel">Are you sure you want to delete the company?</h1>
+            <h1 class="modal-title fs-5" id="deleteConfirmationModalLabel">{{ $t("companyProfile.deleteConfirmation") }}</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger"
                     @click="deleteCompany"
                     v-if="isOwner"
-                    data-bs-dismiss="modal">Delete</button>
+                    data-bs-dismiss="modal">{{ $t("companyProfile.delete") }}</button>
+
           </div>
         </div>
       </div>
     </div>
+    <leave-from-company-button v-if="isUserInCompany && !isOwner" :company="company" :loggedInUser="store.state.authModule.user">
+    </leave-from-company-button>
 
+    <owner-invite-list v-if="isOwner" :company-id="companyId"></owner-invite-list>
+    <owner-request-list v-if="isOwner" :company-id="companyId"></owner-request-list>
   </div>
 </template>
 
@@ -52,6 +59,9 @@ import axiosInstance from '@/api/api';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import CompanyModal from "@/components/modals/CompanyModal.vue";
+import LeaveFromCompanyButton from "@/components/buttons/LeaveFromCompanyButton.vue";
+import OwnerInviteList from "@/components/OwnerInviteList.vue";
+import OwnerRequestList from "@/components/OwnerRequestList.vue";
 
 const company = ref({});
 const ownerEmail = ref('');
@@ -136,4 +146,11 @@ const updateCompany = async (newCompanyValue) => {
       });
 
 }
+
+const isUserInCompany = computed(() => {
+  return store.state.authModule.user &&
+      company.value &&
+      company.value.members &&
+      company.value.members.includes(store.state.authModule.user.id);
+});
 </script>

@@ -49,11 +49,11 @@ const authModule = {
                 console.error("Error updating user's info:", error);
             }
         },
-        async userCompanies({ commit, state }) {
+        async userCompanies({ commit }) {
             try {
                 const response = await axiosInstance.get('/api/companies/my-companies');
-                const companyIds = response.data.map(company => company.id);
-                commit('saveUserCompanies', companyIds);
+                const companies = response.data;
+                commit('saveUserCompanies', companies);
             } catch (error) {
                 console.error("Error fetching user's companies:", error);
             }
@@ -85,9 +85,9 @@ const authModule = {
         updateUser(state, userInfo) {
             state.user = { ...state.user, ...userInfo }
         },
-        saveUserCompanies(state, companyIds) {
-            state.user.companyIds = companyIds;
-        },
+        saveUserCompanies(state, companies) {
+            state.user.companies = companies.map(company => ({ id: company.id, name: company.name }));
+        }
     }
 };
 export default authModule
