@@ -5,19 +5,27 @@
         <form @submit.prevent="submitForm">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">User Invite</h1>
+              <h2 class="modal-title fs-5"
+                  id="exampleModalLabel">{{ $t("inviteModal.userInvite") }}</h2>
             </div>
             <div class="modal-body">
               <div v-for="company in userCompanies" :key="company.id">
                 <div class="form-check">
-                  <input type="radio" :id="'companyRadio' + company.id" :value="company.id" v-model="selectedCompany">
-                  <label class="form-check-label" :for="'companyRadio' + company.id">{{ company.name }}</label>
+                  <input type="radio"
+                         :id="'companyRadio' + company.id"
+                         :value="company.id"
+                         v-model="selectedCompany">
+                  <label class="form-check-label"
+                         :for="'companyRadio' + company.id">{{ company.name }}</label>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button"
+                      class="btn btn-secondary"
+                      @click="closeModal">{{ $t("actions.close") }}</button>
+              <button type="submit"
+                      class="btn btn-primary">{{ $t("actions.submit") }}</button>
             </div>
           </div>
         </form>

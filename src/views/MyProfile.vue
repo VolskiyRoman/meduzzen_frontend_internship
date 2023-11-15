@@ -4,7 +4,7 @@
       <img :src="currentUser.avatar" alt="User Avatar" v-if="currentUser.avatar" />
       <p v-for="(value, key) in currentUser" :key="key">
         <template v-if="key !== 'avatar' && key !== 'companies'">
-          <strong>{{ key }}:</strong> {{ value }}
+          <b>{{ key }}:</b> {{ value }}
         </template>
       </p>
       <button @click="showEditForm" v-if="!editingUserInfo">{{ $t("myProfile.editUserProfile") }}</button>
@@ -32,20 +32,32 @@
       <p>Loading...</p>
     </div>
     <div>
-      <input type="file" ref="fileInput" accept="image/*" />
+      <input type="file"
+             ref="fileInput"
+             accept="image/*" />
       <button @click="updateAvatar">{{ $t("myProfile.updateAvatar") }}</button>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
       {{ $t("myProfile.deleteProfile") }}
     </button>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade"
+         id="exampleModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $t("myProfile.deleteProfile") }}</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
           </div>
           <div class="modal-body">
             {{ $t("myProfile.deleteConfirmation") }}

@@ -1,12 +1,9 @@
 <template>
   <div>
-    <h2> {{ $t("ownerInviteList") }} </h2>
+    <h2>{{ $t("ownerInviteList") }}</h2>
     <div v-for="invite in pendingInvites" :key="invite.id">
-      <p>
-        Invite id: {{ invite.id }}<br>
-        Company Id: {{ invite.company }}<br>
-        <button @click="revokeInvite(invite.id)" class="btn btn-danger">{{ $t("actions.revoke") }}</button>
-      </p>
+      <invite-detail :invite="invite" />
+      <button @click="revokeInvite(invite.id)" class="btn btn-danger">{{ $t("actions.revoke") }}</button>
     </div>
   </div>
 </template>
@@ -15,6 +12,8 @@
 import { ref, onMounted } from 'vue';
 import axiosInstance from '@/api/api';
 import { toast } from "vue3-toastify";
+import InviteDetail from "@/components/InviteDetail.vue";
+
 const props = defineProps(['companyId']);
 
 const pendingInvites = ref([]);

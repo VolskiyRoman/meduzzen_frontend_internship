@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{ $t("myRequestList") }}</h2>
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading">{{ $t("loading") }}</div>
     <ul v-else>
       <li v-for="request in pendingRequests" :key="request.id">
         {{ request.status }} - {{ request.company }} - {{ request.user }}

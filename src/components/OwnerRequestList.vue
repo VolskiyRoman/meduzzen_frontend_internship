@@ -3,10 +3,12 @@
     <h2> {{ $t("ownerRequestList") }} </h2>
     <div v-for="request in pendingRequests" :key="request.id">
       <p>
-        Request id: {{ request.id }}<br>
-        Company Id: {{ request.company }}<br>
-        <button @click="approveRequest(request.id)" class="btn btn-success">{{ $t("actions.approve") }}</button>
-        <button @click="rejectRequest(request.id)" class="btn btn-danger">{{ $t("actions.reject") }}</button>
+        {{ $t("requestDetail.requestId") }}: {{ request.id }}<br>
+        {{ $t("requestDetail.companyId") }}: {{ request.company }}<br>
+        <button @click="approveRequest(request.id)"
+                class="btn btn-success">{{ $t("actions.approve") }}</button>
+        <button @click="rejectRequest(request.id)"
+                class="btn btn-danger">{{ $t("actions.reject") }}</button>
       </p>
     </div>
   </div>

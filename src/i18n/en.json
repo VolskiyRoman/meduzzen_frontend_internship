@@ -54,7 +54,9 @@
     "revoke": "Revoke",
     "approve": "Approve",
     "reject": "Reject",
-    "request": "Request"
+    "request": "Request",
+    "close": "Close",
+    "submit": "Submit"
   },
   "companyProfile": {
     "owner": "Owner",
@@ -64,5 +66,17 @@
     "deleteConfirmation": "Are you sure you want to delete the company?"
   },
   "leaveFromCompany": "Leave from company",
-  "inviteThisUser": "Invite this user"
+  "inviteThisUser": "Invite this user",
+  "inviteModal": {
+    "userInvite": "User Invite"
+  },
+  "inviteDetail": {
+    "inviteId": "Invite id",
+    "companyId": "Company id"
+  },
+  "loading": "Loading...",
+  "requestDetail": {
+    "requestId": "Request id",
+    "companyId": "Company Id"
+  }
 }

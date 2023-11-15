@@ -21,7 +21,7 @@
     "companyProfile": {
       "owner": "Власник:",
       "members": "Учасники:",
-      "updateButton": "Обновити цю компанію",
+      "updateButton": "Оновити цю компанію",
       "deleteButton": "Видалити цю компанію",
       "deleteConfirm": "Ви впевнені, що хочете видалити компанію?"
     },
@@ -54,7 +54,10 @@
     "revoke": "Відкликати",
     "approve": "Схвалити",
     "reject": "Відхилити",
-    "request": "Запит"
+    "request": "Запит",
+    "close": "Закрити",
+    "submit": "Надіслати"
+
   },
   "companyProfile": {
     "owner": "Власник",
@@ -64,5 +67,17 @@
     "deleteConfirmation": "Ви впевнені, що хочете видалити компанію?"
   },
   "leaveFromCompany": "Вийти з компанії",
-  "inviteThisUser": "Запросити цього користувача"
+  "inviteThisUser": "Запросити цього користувача",
+  "inviteModal": {
+    "userInvite": "Запрошення користувача"
+  },
+  "inviteDetail": {
+    "inviteId": "Ідентифікатор запрошення",
+    "companyId": "Ідентифікатор компанії"
+  },
+  "loading": "Завантаження...",
+  "requestDetail": {
+    "requestId": "Ідентифікатор запиту",
+    "companyId": "Ідентифікатор компанії"
+  }
 }

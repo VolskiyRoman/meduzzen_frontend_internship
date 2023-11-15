@@ -32,8 +32,12 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteConfirmationModalLabel">{{ $t("companyProfile.deleteConfirmation") }}</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h1 class="modal-title fs-5"
+                id="deleteConfirmationModalLabel">{{ $t("companyProfile.deleteConfirmation") }}</h1>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger"
@@ -44,11 +48,14 @@
         </div>
       </div>
     </div>
-    <leave-from-company-button v-if="isUserInCompany && !isOwner" :company="company" :loggedInUser="store.state.authModule.user">
-    </leave-from-company-button>
+    <leave-from-company-button
+        v-if="isUserInCompany && !isOwner"
+        :company="company"
+        :loggedInUser="store.state.authModule.user" />
 
-    <owner-invite-list v-if="isOwner" :company-id="companyId"></owner-invite-list>
-    <owner-request-list v-if="isOwner" :company-id="companyId"></owner-request-list>
+
+    <owner-invite-list v-if="isOwner" :company-id="companyId" />
+    <owner-request-list v-if="isOwner" :company-id="companyId" />
   </div>
 </template>
 
