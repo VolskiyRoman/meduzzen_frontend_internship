@@ -40,7 +40,6 @@
                     @click="deleteCompany"
                     v-if="isOwner"
                     data-bs-dismiss="modal">{{ $t("companyProfile.delete") }}</button>
-
           </div>
         </div>
       </div>
@@ -131,20 +130,15 @@ const deleteCompany = async () => {
 };
 
 const updateCompany = async (newCompanyValue) => {
-  const postRequestData = {
-    name: newCompanyValue.name,
-    description: newCompanyValue.description,
-    is_hidden: newCompanyValue.is_hidden,
-  };
+  const { name, description, is_hidden } = newCompanyValue;
+  const postRequestData = { name, description, is_hidden };
 
-  axiosInstance.patch(`api/companies/${companyId}/`, postRequestData)
-      .then(
-          fetchCompany()
-      )
-      .catch(error => {
-        console.error('Error creating company:', error);
-      });
-
+  try {
+    await axiosInstance.patch(`api/companies/${companyId}/`, postRequestData);
+    fetchCompany();
+  } catch (error) {
+    console.error('Error updating company:', error);
+  }
 }
 
 const isUserInCompany = computed(() => {
