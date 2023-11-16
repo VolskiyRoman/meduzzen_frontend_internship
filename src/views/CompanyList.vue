@@ -2,20 +2,23 @@
   <div>
     <h1>{{ $t('components.listOfCompaniesPage') }}</h1>
     <div v-if="loading">Loading...</div>
-    <ul v-else>
-      <router-link v-for="company in displayedCompanies"
-                   :key="company.id"
-                   :to="{ name: 'CompanyProfile', params: { id: company.id }}">
-        <li>{{ company.name }}</li>
-      </router-link>
-    </ul>
+    <div v-else>
+      <div v-for="company in displayedCompanies" :key="company.id">
+        <router-link :to="{ name: 'CompanyProfile', params: { id: company.id }}">
+          <li>{{ company.name }}</li>
+        </router-link>
+        <request-button :companyId="company.id" />
+      </div>
+    </div>
     <button type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
             v-if="currentPath === '/my-companies'"
-            data-bs-target="#exampleModal">Create New Company</button>
+            data-bs-target="#exampleModal">{{ $t("createNewCompany") }}</button>
 
-    <CompanyModal modalTitle="New Company" submitButtonText="Create Company" @companyUpdate="handleCompanyCreated" />
+    <CompanyModal modalTitle="New Company"
+                  submitButtonText="Create Company"
+                  @companyUpdate="handleCompanyCreated" />
 
   </div>
 </template>
@@ -24,8 +27,9 @@
 import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
-import CompanyModal from "@/components/CompanyModal.vue";
+import CompanyModal from "@/components/modals/CompanyModal.vue";
 import axiosInstance from "@/api/api";
+import RequestButton from "@/components/buttons/RequestButton.vue";
 
 const companies = ref([]);
 const loading = ref(true);

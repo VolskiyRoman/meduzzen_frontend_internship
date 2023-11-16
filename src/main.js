@@ -3,10 +3,12 @@ import App from './App.vue';
 import router from './router';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap'
+import 'vue3-toastify/dist/index.css'
 import { languages } from "@/i18n";
 import { defaultLocale } from "@/i18n";
 import {createI18n} from "vue-i18n";
 import FlagIcon from 'vue-flag-icon'
+import Vue3Toastify, {toast} from "vue3-toastify";
 
 import { createStore } from 'vuex';
 import authModule from "@/store/modules/authModule";
@@ -20,6 +22,7 @@ const store = createStore({
         userModule
     },
 });
+
 export default store
 
 const app = createApp(App);
@@ -35,4 +38,9 @@ export const i18n = createI18n({
 app.use(FlagIcon)
 app.use(i18n)
 app.use(store);
+app.use(Vue3Toastify, {
+    autoClose: 3000,
+    position: toast.POSITION.TOP_CENTER
+})
 app.mount('#app');
+

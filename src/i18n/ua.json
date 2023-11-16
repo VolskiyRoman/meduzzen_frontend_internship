@@ -21,7 +21,7 @@
     "companyProfile": {
       "owner": "Власник:",
       "members": "Учасники:",
-      "updateButton": "Обновити цю компанію",
+      "updateButton": "Оновити цю компанію",
       "deleteButton": "Видалити цю компанію",
       "deleteConfirm": "Ви впевнені, що хочете видалити компанію?"
     },
@@ -30,5 +30,54 @@
     "userRegistrationPage": "Сторінка реєстрації користувача",
     "listOfUsersPage": "Список користувачів",
     "userProfilePage": "Профіль користувача"
+  },
+  "myProfile": {
+    "editUserProfile": "Редагувати профіль користувача",
+    "updateAvatar": "Оновити аватар",
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "userInfo": "Інформація про користувача",
+    "bio": "Біо",
+    "cancel": "Скасувати",
+    "deleteProfile": "Видалити профіль",
+    "deleteConfirmation": "Ви впевнені, що хочете видалити свій профіль?"
+  },
+  "myInviteList": "Мої запрошення:",
+  "myRequestList": "Мої запити:",
+  "ownerInviteList": "Запрошення в компанію:",
+  "ownerRequestList": "Запити в компанію:",
+  "createNewCompany": "Створити нову компанію",
+  "actions": {
+    "accept": "Прийняти",
+    "decline": "Відхилити",
+    "cancelRequest": "Скасувати запит",
+    "revoke": "Відкликати",
+    "approve": "Схвалити",
+    "reject": "Відхилити",
+    "request": "Запит",
+    "close": "Закрити",
+    "submit": "Надіслати"
+
+  },
+  "companyProfile": {
+    "owner": "Власник",
+    "members": "Учасники",
+    "update": "Оновити цю компанію",
+    "delete": "Видалити компанію",
+    "deleteConfirmation": "Ви впевнені, що хочете видалити компанію?"
+  },
+  "leaveFromCompany": "Вийти з компанії",
+  "inviteThisUser": "Запросити цього користувача",
+  "inviteModal": {
+    "userInvite": "Запрошення користувача"
+  },
+  "inviteDetail": {
+    "inviteId": "Ідентифікатор запрошення",
+    "companyId": "Ідентифікатор компанії"
+  },
+  "loading": "Завантаження...",
+  "requestDetail": {
+    "requestId": "Ідентифікатор запиту",
+    "companyId": "Ідентифікатор компанії"
   }
 }

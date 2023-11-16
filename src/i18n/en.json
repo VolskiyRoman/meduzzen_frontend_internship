@@ -30,5 +30,53 @@
     "userRegistrationPage": "User Registration Page",
     "listOfUsersPage": "List of Users Page",
     "userProfilePage": "User Profile Page"
+  },
+  "myProfile": {
+    "editUserProfile": "Edit user profile",
+    "updateAvatar": "Update avatar",
+    "firstName": "First name",
+    "lastName": "Last Name",
+    "userInfo": "User info",
+    "bio": "Bio",
+    "cancel": "Cancel",
+    "deleteProfile": "Delete profile",
+    "deleteConfirmation": "Are you sure you want to delete your profile?"
+  },
+  "myInviteList": "My invites:",
+  "myRequestList": "My requests:",
+  "ownerInviteList": "Company Invites:",
+  "ownerRequestList": "Company Requests:",
+  "createNewCompany": "Create New Company",
+  "actions": {
+    "accept": "Accept",
+    "decline": "Decline",
+    "cancelRequest": "Cancel request",
+    "revoke": "Revoke",
+    "approve": "Approve",
+    "reject": "Reject",
+    "request": "Request",
+    "close": "Close",
+    "submit": "Submit"
+  },
+  "companyProfile": {
+    "owner": "Owner",
+    "members": "Members",
+    "update": "Update this company",
+    "delete": "Delete Company",
+    "deleteConfirmation": "Are you sure you want to delete the company?"
+  },
+  "leaveFromCompany": "Leave from company",
+  "inviteThisUser": "Invite this user",
+  "inviteModal": {
+    "userInvite": "User Invite"
+  },
+  "inviteDetail": {
+    "inviteId": "Invite id",
+    "companyId": "Company id"
+  },
+  "loading": "Loading...",
+  "requestDetail": {
+    "requestId": "Request id",
+    "companyId": "Company Id"
   }
 }
