@@ -78,5 +78,10 @@
   "requestDetail": {
     "requestId": "Request id",
     "companyId": "Company Id"
+  },
+  "adminList": {
+    "admins": "Admins:",
+    "remove": "Remove admin",
+    "add": "Add admin"
   }
 }
