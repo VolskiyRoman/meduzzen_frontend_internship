@@ -5,7 +5,9 @@
     <p>{{ $t("companyProfile.owner") }} {{ ownerEmail }}</p>
     <h2>{{ $t("companyProfile.members") }}</h2>
     <ul>
-      <li v-for="memberId in company.members" :key="memberId">{{ memberEmails[memberId] }}</li>
+      <li v-for="memberId in company.members" :key="memberId">
+        {{ memberEmails[memberId] }} (ID: {{ memberId }})
+      </li>
     </ul>
 
     <button type="button"
@@ -54,8 +56,13 @@
         :loggedInUser="store.state.authModule.user" />
 
 
-    <owner-invite-list v-if="isOwner" :company-id="companyId" />
-    <owner-request-list v-if="isOwner" :company-id="companyId" />
+    <owner-invite-list v-if="isOwner"
+                       :company-id="companyId" />
+    <owner-request-list v-if="isOwner"
+                        :company-id="companyId" />
+    <AdminList :companyId="companyId"
+               :company="company" />
+
   </div>
 </template>
 
@@ -68,6 +75,7 @@ import CompanyModal from "@/components/modals/CompanyModal.vue";
 import LeaveFromCompanyButton from "@/components/buttons/LeaveFromCompanyButton.vue";
 import OwnerInviteList from "@/components/OwnerInviteList.vue";
 import OwnerRequestList from "@/components/OwnerRequestList.vue";
+import AdminList from "@/components/AdminList.vue";
 
 const company = ref({});
 const ownerEmail = ref('');
