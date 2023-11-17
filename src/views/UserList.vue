@@ -45,4 +45,3 @@ const closeModal = () => {
   isHidden.value = true;
 };
 </script>
-

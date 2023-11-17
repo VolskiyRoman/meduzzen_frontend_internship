@@ -1,13 +1,13 @@
 <template>
   <div>
     <h1>{{ $t('components.listOfCompaniesPage') }}</h1>
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading">{{ $t("loading") }}</div>
     <div v-else>
       <div v-for="company in displayedCompanies" :key="company.id">
         <router-link :to="{ name: 'CompanyProfile', params: { id: company.id }}">
           <li>{{ company.name }}</li>
         </router-link>
-        <request-button :companyId="company.id" />
+        <request-button v-if="currentPath !== '/my-companies'" :companyId="company.id" />
       </div>
     </div>
     <button type="button"

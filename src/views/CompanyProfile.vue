@@ -62,7 +62,7 @@
                         :company-id="companyId" />
     <AdminList :companyId="companyId"
                :company="company" />
-
+    <QuizModal/>
   </div>
 </template>
 
@@ -76,6 +76,7 @@ import LeaveFromCompanyButton from "@/components/buttons/LeaveFromCompanyButton.
 import OwnerInviteList from "@/components/OwnerInviteList.vue";
 import OwnerRequestList from "@/components/OwnerRequestList.vue";
 import AdminList from "@/components/AdminList.vue";
+import QuizModal from "@/components/modals/QuizModal.vue";
 
 const company = ref({});
 const ownerEmail = ref('');
