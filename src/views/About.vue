@@ -15,6 +15,6 @@ axiosInstance.get('')
 <template>
   <div>
     <h1>{{ $t("components.aboutPage") }}</h1>
-    <p>{{ $t("components.aboutPageContent") }}</p>
+    <p>{{ $t("projectDescription") }}</p>
   </div>
 </template>
