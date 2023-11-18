@@ -4,20 +4,32 @@
     <ul>
       <li v-for="quiz in quizzes"
           :key="quiz.id">
-        <router-link :to="{ name: 'QuizPage', params: { quizId: quiz.id } }">
+        <template v-if="canEditQuiz()">
+          <router-link :to="{ name: 'QuizPage', params: { quizId: quiz.id } }">
+            {{ quiz.title }}
+          </router-link>
+          <button v-if="canDeleteQuiz(quiz)" @click="deleteQuiz(quiz.id)">
+            {{ $t("quizModal.delete") }}
+          </button>
+          <CompleteQuizButton :quizId="quiz.id" />
+        </template>
+        <template v-else>
           {{ quiz.title }}
-        </router-link>
-        <button
-            @click="deleteQuiz(quiz.id)">{{ $t("quizModal.delete") }}</button>
+          <CompleteQuizButton v-if="isUserInCompany"
+                              :quizId="quiz.id" />
+        </template>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
 import axiosInstance from '@/api/api';
 import { useRoute, useRouter } from 'vue-router';
+import CompleteQuizButton from "@/components/buttons/CompleteQuizButton.vue";
+
+const { userIsOwner, userIsAdmin, isUserInCompany } = defineProps(['userIsOwner', 'userIsAdmin', 'isUserInCompany']);
 
 const quizzes = ref([]);
 const companyId = useRoute().params.id;
@@ -39,6 +51,14 @@ const deleteQuiz = async (quizId) => {
   } catch (error) {
     console.error('Error deleting quiz:', error);
   }
+};
+
+const canEditQuiz = () => {
+  return userIsOwner || userIsAdmin;
+};
+
+const canDeleteQuiz = (quiz) => {
+  return userIsOwner || (userIsAdmin && quiz.company_admin_id === user.id);
 };
 
 onMounted(() => {

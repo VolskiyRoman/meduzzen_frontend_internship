@@ -62,7 +62,12 @@
                         :company-id="companyId" />
     <AdminList :companyId="companyId"
                :company="company" />
-    <QuizList/>
+    <QuizList
+        v-if="isUserInCompany"
+        :userIsOwner="isOwner"
+        :userIsAdmin="isAdmin"
+        :isUserInCompany="isUserInCompany"
+    />
     <QuizModal v-if="isOwner || isAdmin" />
   </div>
 </template>
