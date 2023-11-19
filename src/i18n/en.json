@@ -124,5 +124,10 @@
     "user": "Show User Analytics",
     "company": "Show Company Analytics",
     "value": "User Average Values"
+  },
+  "userProfileList":{
+    "show": "Show Current User Companies",
+    "current": "Current User Companies:",
+    "leave": "Leave Company"
   }
 }

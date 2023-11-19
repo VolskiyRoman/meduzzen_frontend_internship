@@ -9,7 +9,12 @@
           <b>{{ key }}:</b> {{ value }}
         </template>
       </p>
-      <p v-if="userRating">{{ $t("averageRating") }} {{ userRating }}</p>
+      <star-rating
+          v-if="userRating"
+          :rating="roundedRating"
+          :read-only="true"
+          :round-start-rating="false"
+          :increment="0.1"></star-rating>
       <div style="max-width: 900px">
         <AnalyticsGraph :x="xValues"
                         :y="yValues"/>
@@ -99,6 +104,7 @@
   <my-invite-list></my-invite-list>
   <my-request-list></my-request-list>
   <UserCompletedQuizzes/>
+  <UserCompanies/>
 </template>
 
 
@@ -113,6 +119,9 @@ import MyInviteList from "@/components/MyInviteList.vue";
 import MyRequestList from "@/components/MyRequestList.vue";
 import AnalyticsGraph from "@/components/AnalyticsGraph.vue";
 import UserCompletedQuizzes from "@/components/UserCompletedQuizzes.vue";
+import UserCompanies from "@/components/UserCompanies.vue";
+import StarRating from 'vue-star-rating';
+import {toast} from "vue3-toastify";
 
 const schema = yup.object().shape({
   first_name: yup.string().required("First name is required!"),
@@ -223,6 +232,11 @@ const fetchCurrentUserAnalytics = async () => {
     toast.error("Error getting current user analytics")
   }
 };
+
+const roundedRating = computed(() => {
+  const rating = userRating.value ? parseFloat(userRating.value) / 20 : 0;
+  return Math.round(rating * 2) / 2;
+});
 </script>
 
 <style scoped>
