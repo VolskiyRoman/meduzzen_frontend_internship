@@ -82,7 +82,6 @@ const addQuestion = async () => {
       question_text: newQuestionText.value,
       answers: answers.value,
     });
-    console.log(response.data);
     fetchQuiz();
     clearForm();
     toast.success('Question added successfully');
@@ -97,7 +96,6 @@ const removeQuestion = async (questionId) => {
     const response = await axiosInstance.post(`api/quizzes/${quizId}/delete-question/`, {
       question_id: questionId,
     });
-    console.log(response.data);
     fetchQuiz();
     toast.success('Question removed successfully');
   } catch (error) {
