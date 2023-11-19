@@ -1,28 +1,47 @@
 <template>
   <div class="container">
     <div v-if="currentUser">
-      <img :src="currentUser.avatar" alt="User Avatar" v-if="currentUser.avatar" />
+      <img :src="currentUser.avatar"
+           alt="User Avatar"
+           v-if="currentUser.avatar" />
       <p v-for="(value, key) in currentUser" :key="key">
         <template v-if="key !== 'avatar' && key !== 'companies'">
           <b>{{ key }}:</b> {{ value }}
         </template>
       </p>
-      <button @click="showEditForm" v-if="!editingUserInfo">{{ $t("myProfile.editUserProfile") }}</button>
-      <Form @submit="updateUserInfo" :validation-schema="schema" v-if="editingUserInfo">
+      <p v-if="userRating">{{ $t("averageRating") }} {{ userRating }}</p>
+      <div style="max-width: 900px">
+        <AnalyticsGraph :x="xValues"
+                        :y="yValues"/>
+      </div>
+      <button @click="showEditForm"
+              v-if="!editingUserInfo">{{ $t("myProfile.editUserProfile") }}</button>
+      <Form @submit="updateUserInfo"
+            :validation-schema="schema"
+            v-if="editingUserInfo">
         <div class="form-group">
           <label for="first_name">{{ $t("myProfile.firstName") }}</label>
-          <Field name="first_name" type="text" class="form-control" />
-          <ErrorMessage name="first_name" class="error-feedback" />
+          <Field name="first_name"
+                 type="text"
+                 class="form-control" />
+          <ErrorMessage name="first_name"
+                        class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="last_name">{{ $t("myProfile.lastName") }}</label>
-          <Field name="last_name" type="text" class="form-control" />
-          <ErrorMessage name="last_name" class="error-feedback" />
+          <Field name="last_name"
+                 type="text"
+                 class="form-control" />
+          <ErrorMessage name="last_name"
+                        class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="bio">{{ $t("myProfile.bio") }}</label>
-          <Field name="bio" type="text" class="form-control" />
-          <ErrorMessage name="bio" class="error-feedback" />
+          <Field name="bio"
+                 type="text"
+                 class="form-control" />
+          <ErrorMessage name="bio"
+                        class="error-feedback" />
         </div>
         <button type="submit">{{ $t("myProfile.userInfo") }}</button>
         <button @click="showEditForm">{{ $t("myProfile.cancel") }}</button>
@@ -79,6 +98,7 @@
   </div>
   <my-invite-list></my-invite-list>
   <my-request-list></my-request-list>
+  <UserCompletedQuizzes/>
 </template>
 
 
@@ -91,6 +111,8 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import MyInviteList from "@/components/MyInviteList.vue";
 import MyRequestList from "@/components/MyRequestList.vue";
+import AnalyticsGraph from "@/components/AnalyticsGraph.vue";
+import UserCompletedQuizzes from "@/components/UserCompletedQuizzes.vue";
 
 const schema = yup.object().shape({
   first_name: yup.string().required("First name is required!"),
@@ -106,9 +128,17 @@ const editingUserInfo = ref(false)
 
 const fileInput = ref(null);
 
+const analyticsData = ref([]);
+const xValues = ref([]);
+const yValues = ref([]);
+
 onMounted(() => {
   if (!currentUser.value) {
     router.push('/login');
+  }
+  fetchUserRating(currentUser.value.id);
+  if (currentUser.value) {
+    fetchCurrentUserAnalytics();
   }
 });
 
@@ -166,6 +196,31 @@ const deleteProfile = async () => {
     await router.push('/login');
   } catch (error) {
     console.error("Error deleting profile:", error);
+  }
+};
+
+const userRating = ref(null);
+
+const fetchUserRating = async (userId) => {
+  try {
+    const response = await axiosInstance.get(`/api/quizzes/average-score/?user_id=${userId}`);
+    userRating.value = response.data.average_score;
+  } catch (error) {
+    console.error('Error fetching user rating:', error);
+  }
+};
+
+const fetchCurrentUserAnalytics = async () => {
+  try {
+    const response = await axiosInstance.post(`/api/companies/current-user-average-value/`, {
+      user_id: currentUser.value.id
+    });
+    analyticsData.value = response.data;
+
+    xValues.value = analyticsData.value.map(data => data.timestamp);
+    yValues.value = analyticsData.value.map(data => data.score);
+  } catch (error) {
+    toast.error("Error getting current user analytics")
   }
 };
 </script>

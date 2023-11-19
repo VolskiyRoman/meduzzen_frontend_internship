@@ -107,5 +107,22 @@
   "quizList": "Quiz List",
   "projectDescription": "Quizzes is a web application that allows users to create companies, generate tests for these companies, take the tests, and view testing statistics.\n\nKey functionalities of the project include:\n\nCompany Creation: Users can create their own companies or join existing ones. Each company has the ability to create its own tests to assess the skills of employees or students.\n\nTest Creation: Company owners can create tests, define questions, and provide answer options. Each question can have one or multiple answers, with one or several correct choices.\n\nTest Taking: Users can choose available tests to take. During testing, they select answers to questions, and the system processes the results.\n\nTesting Statistics: After completing a test, users can view their testing statistics, including the number of correct and incorrect answers, the overall score, and other important metrics.\n\nCompany and Test Management: Company owners have access to a management panel where they can view and analyze testing statistics of their employees or students. They can also add/remove tests and questions.",
   "submitQuiz": "Submit Quiz",
-  "completeQuiz": "Complete Quiz"
+  "completeQuiz": "Complete Quiz",
+  "companyProfileGraph": {
+    "score": "Average score",
+    "date": "Date"
+  },
+  "averageRating": "Average Rating in All Companies:",
+  "userCompletedQuizzes": {
+    "show": "Show Completed Quizzes",
+    "completed": "Completed Quizzes",
+    "name": "Quiz Name:",
+    "time": "Time Completed:"
+  },
+  "analyticButton": {
+    "id": "User ID:",
+    "user": "Show User Analytics",
+    "company": "Show Company Analytics",
+    "value": "User Average Values"
+  }
 }
