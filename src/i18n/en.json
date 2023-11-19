@@ -129,5 +129,10 @@
     "show": "Show Current User Companies",
     "current": "Current User Companies:",
     "leave": "Leave Company"
+  },
+  "export":{
+    "user": "Export user data",
+    "company": "Export company data",
+    "enter": "Enter user ID"
   }
 }

@@ -105,6 +105,7 @@
   <my-request-list></my-request-list>
   <UserCompletedQuizzes/>
   <UserCompanies/>
+  <UserExport/>
 </template>
 
 
@@ -122,6 +123,7 @@ import UserCompletedQuizzes from "@/components/UserCompletedQuizzes.vue";
 import UserCompanies from "@/components/UserCompanies.vue";
 import StarRating from 'vue-star-rating';
 import {toast} from "vue3-toastify";
+import UserExport from "@/components/UserExport.vue";
 
 const schema = yup.object().shape({
   first_name: yup.string().required("First name is required!"),
