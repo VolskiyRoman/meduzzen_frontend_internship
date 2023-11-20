@@ -37,7 +37,6 @@ const fetchAdmins = async () => {
 
     await fetchAdminEmails(admins.value);
   } catch (error) {
-    console.error('Error fetching admins:', error);
     toast.error('Error fetching admins');
   }
 };
@@ -54,7 +53,6 @@ const fetchAdminEmails = async (adminIds) => {
       adminEmails.value[result.adminId] = result.email;
     });
   } catch (error) {
-    console.error('Error fetching admin emails:', error);
     toast.error('Error fetching admin emails');
   }
 };
@@ -97,7 +95,6 @@ const removeAdmin = async (adminId) => {
 
     toast.success('Admin removed successfully');
   } catch (error) {
-    console.error('Error removing admin:', error);
     toast.error('Error removing admin');
   }
 };
