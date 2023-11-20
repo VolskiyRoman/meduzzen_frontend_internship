@@ -72,6 +72,12 @@ const routes = [
     component: () => import("@/components/QuizPage.vue"),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/complete-quiz/:quizId',
+    name: 'CompleteQuiz',
+    component: () => import("@/components/CompleteQuiz.vue"),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
