@@ -66,6 +66,12 @@ const routes = [
     component: () => import("@/components/testVuex.vue"),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/quiz/:quizId',
+    name: 'QuizPage',
+    component: () => import("@/components/QuizPage.vue"),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
