@@ -54,11 +54,11 @@ const deleteQuiz = async (quizId) => {
 };
 
 const canEditQuiz = () => {
-  return userIsOwner || userIsAdmin;
+  return userIsOwner;
 };
 
-const canDeleteQuiz = (quiz) => {
-  return userIsOwner || (userIsAdmin && quiz.company_admin_id === user.id);
+const canDeleteQuiz = () => {
+  return userIsOwner;
 };
 
 onMounted(() => {

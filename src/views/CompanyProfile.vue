@@ -7,6 +7,7 @@
     <ul>
       <li v-for="memberId in company.members" :key="memberId">
         {{ memberEmails[memberId] }} (ID: {{ memberId }})
+        <span v-if="isOwner || isAdmin">{{ getLastQuizCompletionTime(memberId) }}</span>
       </li>
     </ul>
 
@@ -15,7 +16,7 @@
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             v-if="isOwner"
-            >{{ $t("companyProfile.update") }}</button>
+    >{{ $t("companyProfile.update") }}</button>
 
     <CompanyModal modalTitle="Update company" submitButtonText="Update" @companyUpdate="updateCompany" />
 
@@ -42,7 +43,8 @@
                     aria-label="Close"></button>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger"
+            <button type="button"
+                    class="btn btn-danger"
                     @click="deleteCompany"
                     v-if="isOwner"
                     data-bs-dismiss="modal">{{ $t("companyProfile.delete") }}</button>
@@ -54,7 +56,6 @@
         v-if="isUserInCompany && !isOwner"
         :company="company"
         :loggedInUser="store.state.authModule.user" />
-
 
     <owner-invite-list v-if="isOwner"
                        :company-id="companyId" />
@@ -69,6 +70,7 @@
         :isUserInCompany="isUserInCompany"
     />
     <QuizModal v-if="isOwner || isAdmin" />
+    <AnalyticsButton v-if="isOwner || isAdmin" :companyId="companyId" />
   </div>
 </template>
 
@@ -84,10 +86,12 @@ import OwnerRequestList from "@/components/OwnerRequestList.vue";
 import AdminList from "@/components/AdminList.vue";
 import QuizModal from "@/components/modals/QuizModal.vue";
 import QuizList from "@/components/QuizList.vue";
+import AnalyticsButton from "@/components/buttons/AnalyticsButton.vue";
 
 const company = ref({});
 const ownerEmail = ref('');
 const memberEmails = ref({});
+const memberLastQuizCompletionTimes = ref({});
 const loading = ref(true);
 const store = useStore();
 const router = useRouter();
@@ -99,8 +103,8 @@ const fetchCompany = async () => {
     company.value = response.data;
 
     await fetchOwnerEmail(company.value.owner);
-
     await fetchMemberEmails(company.value.members);
+    await fetchMemberLastQuizCompletionTimes(company.value.members);
 
     loading.value = false;
   } catch (error) {
@@ -132,6 +136,23 @@ const fetchMemberEmails = async (memberIds) => {
   } catch (error) {
     console.error('Error fetching member emails:', error);
   }
+};
+
+const fetchMemberLastQuizCompletionTimes = async (memberIds) => {
+  try {
+    const response = await axiosInstance.get(`/api/companies/${companyId}/user-last-time-completed/`);
+    const userAnalyticsData = response.data;
+
+    userAnalyticsData.forEach((userData) => {
+      memberLastQuizCompletionTimes.value[userData.user_id] = userData.last_time_completed;
+    });
+  } catch (error) {
+    console.error('Error fetching user analytics data:', error);
+  }
+};
+
+const getLastQuizCompletionTime = (memberId) => {
+  return memberLastQuizCompletionTimes.value[memberId] || 'N/A';
 };
 
 onMounted(() => {
