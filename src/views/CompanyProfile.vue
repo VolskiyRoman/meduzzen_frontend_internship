@@ -71,6 +71,7 @@
     />
     <QuizModal v-if="isOwner || isAdmin" />
     <AnalyticsButton v-if="isOwner || isAdmin" :companyId="companyId" />
+    <CompanyExport :companyId="companyId" />
   </div>
 </template>
 
@@ -87,6 +88,7 @@ import AdminList from "@/components/AdminList.vue";
 import QuizModal from "@/components/modals/QuizModal.vue";
 import QuizList from "@/components/QuizList.vue";
 import AnalyticsButton from "@/components/buttons/AnalyticsButton.vue";
+import CompanyExport from "@/components/CompanyExport.vue";
 
 const company = ref({});
 const ownerEmail = ref('');
@@ -138,7 +140,7 @@ const fetchMemberEmails = async (memberIds) => {
   }
 };
 
-const fetchMemberLastQuizCompletionTimes = async (memberIds) => {
+const fetchMemberLastQuizCompletionTimes = async () => {
   try {
     const response = await axiosInstance.get(`/api/companies/${companyId}/user-last-time-completed/`);
     const userAnalyticsData = response.data;
